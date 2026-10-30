@@ -1,0 +1,136 @@
+/* Street Empire — retro text-game terminal look.
+   Scoped under .se-game so it doesn't fight the theme. */
+
+.se-game {
+	--se-bg: #0d0b10;
+	--se-panel: #16121d;
+	--se-line: #3a3050;
+	--se-text: #f0ecf8;
+	--se-dim: #b3aac6;
+	--se-gold: #f0c05e;   /* money */
+	--se-green: #8fe08f;  /* success */
+	--se-red: #f07575;    /* danger */
+	background: var(--se-bg);
+	color: var(--se-text);
+	font-family: ui-monospace, "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+	font-size: 16px;
+	line-height: 1.6;
+	border: 1px solid var(--se-line);
+	border-radius: 6px;
+	padding: 20px;
+	max-width: 860px;
+	margin: 0 auto;
+}
+
+/* High-contrast light theme (user-selectable). */
+.se-game.se-theme-light {
+	--se-bg: #ffffff;
+	--se-panel: #f5f3ee;
+	--se-line: #b9b2a6;
+	--se-text: #191512;
+	--se-dim: #4f4a42;
+	--se-gold: #7a5600;   /* dark amber: readable on white */
+	--se-green: #1a6b1a;
+	--se-red: #a31f1f;
+}
+.se-game.se-theme-light .se-btn { background: #7a5600; color: #ffffff; }
+.se-game.se-theme-light .se-btn-danger { background: #a31f1f; color: #ffffff; }
+.se-game.se-theme-light .se-btn-ghost { background: transparent; color: #7a5600; border-color: #7a5600; }
+.se-game.se-theme-light .se-upsell { background: rgba(122, 86, 0, .06); }
+
+/* User-selectable text sizes. */
+.se-game.se-text-lg { font-size: 18px; }
+.se-game.se-text-xl { font-size: 21px; }
+
+.se-game h2, .se-game h3 { color: var(--se-text); font-family: inherit; margin-top: 0; }
+.se-title { letter-spacing: .08em; text-transform: uppercase; font-size: 1.2em; }
+.se-title::before { content: "■ "; color: var(--se-gold); }
+
+.se-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;
+	border-bottom: 1px dashed var(--se-line); padding-bottom: 12px; margin-bottom: 16px; }
+.se-alias { color: var(--se-dim); }
+.se-shield { color: var(--se-green); font-style: normal; }
+
+.se-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr)); gap: 8px; margin-bottom: 16px; }
+.se-stat { background: var(--se-panel); border: 1px solid var(--se-line); border-radius: 4px; padding: 8px 10px; }
+.se-stat-label { display: block; color: var(--se-dim); font-size: .8em; text-transform: uppercase; letter-spacing: .1em; }
+.se-stat-value { display: block; font-size: 1.15em; color: var(--se-gold); }
+
+.se-msg { min-height: 1.5em; margin-bottom: 14px; }
+.se-msg.is-ok { color: var(--se-green); }
+.se-msg.is-err { color: var(--se-red); }
+.se-msg::before { content: "> "; color: var(--se-dim); }
+.se-msg:empty::before { content: ""; }
+
+.se-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.se-panel { background: var(--se-panel); border: 1px solid var(--se-line); border-radius: 4px; padding: 14px; }
+.se-panel h3 { font-size: .95em; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+.se-hint { color: var(--se-dim); font-size: .95em; margin: 0 0 10px; }
+
+.se-form { display: flex; gap: 8px; flex-wrap: wrap; }
+.se-form input[type="number"], .se-form select {
+	background: var(--se-bg); color: var(--se-text); border: 1px solid var(--se-line);
+	border-radius: 4px; padding: 6px 8px; font-family: inherit; font-size: inherit; min-width: 0;
+}
+.se-form input[type="number"] { width: 5.5em; }
+.se-form select { flex: 1 1 140px; }
+
+.se-btn {
+	display: inline-block; background: var(--se-gold); color: #171205; border: 0; border-radius: 4px;
+	padding: 6px 14px; font-family: inherit; font-size: inherit; font-weight: 700; cursor: pointer;
+	text-decoration: none;
+}
+.se-btn:hover { filter: brightness(1.1); }
+.se-btn:focus-visible { outline: 2px solid var(--se-text); outline-offset: 2px; }
+.se-btn[disabled] { opacity: .5; cursor: wait; }
+.se-btn-danger { background: var(--se-red); color: #1c0707; }
+.se-btn-ghost { background: transparent; color: var(--se-gold); border: 1px solid var(--se-gold); }
+
+.se-upsell {
+	margin-top: 14px; padding: 12px 14px; border: 1px solid var(--se-gold); border-radius: 4px;
+	background: rgba(232, 182, 76, .07); display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.se-upsell .se-btn { margin-left: auto; }
+.se-upsell[hidden] { display: none; }
+
+.se-crew { margin-top: 18px; border-top: 1px dashed var(--se-line); padding-top: 12px; }
+.se-crew h3 { font-size: .95em; text-transform: uppercase; letter-spacing: .08em; }
+.se-crew-members, .se-crew-invites { list-style: none; margin: 0 0 12px; padding: 0; }
+.se-crew-members li, .se-crew-invites li { padding: 4px 0; border-bottom: 1px solid var(--se-line); font-size: .95em; }
+.se-crew-invites li { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.se-crew-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.se-form.se-inline { display: inline-flex; }
+.se-dim { color: var(--se-dim); }
+
+.se-log { margin-top: 18px; border-top: 1px dashed var(--se-line); padding-top: 12px; }
+.se-log ul { list-style: none; margin: 0; padding: 0; }
+.se-log li { padding: 4px 0; border-bottom: 1px solid var(--se-line); font-size: .95em; color: var(--se-dim); }
+.se-log li::before { content: "· "; }
+.se-log li.se-log-attack_win::before, .se-log li.se-log-defended_win::before { content: "▲ "; color: var(--se-green); }
+.se-log li.se-log-attack_loss::before, .se-log li.se-log-defended_loss::before { content: "▼ "; color: var(--se-red); }
+
+.se-rankings table { width: 100%; border-collapse: collapse; }
+.se-rankings th, .se-rankings td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--se-line); }
+.se-rankings th { color: var(--se-dim); text-transform: uppercase; font-size: .8em; letter-spacing: .1em; }
+.se-rankings tbody tr:first-child td { color: var(--se-gold); }
+
+@media (max-width: 640px) {
+	.se-panels { grid-template-columns: 1fr; }
+	.se-game { padding: 14px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+	.se-msg { transition: opacity .2s ease; }
+}
+
+/* Display preferences row */
+.se-display {
+	display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+	margin-bottom: 14px; padding: 8px 10px;
+	border: 1px solid var(--se-line); border-radius: 4px; background: var(--se-panel);
+	font-size: .95em;
+}
+.se-display label { color: var(--se-dim); }
+.se-display select {
+	background: var(--se-bg); color: var(--se-text); border: 1px solid var(--se-line);
+	border-radius: 4px; padding: 5px 8px; font-family: inherit; font-size: inherit;
+}
